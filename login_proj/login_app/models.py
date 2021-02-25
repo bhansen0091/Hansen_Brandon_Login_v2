@@ -1,5 +1,6 @@
 from django.db import models
 import re
+import datetime
 
 class UserManager(models.Manager):
     def basic_validator(self, post_data):
@@ -13,7 +14,7 @@ class UserManager(models.Manager):
 
         last_name_regex = re.compile(r"^[a-zA-Z]+$")
         if not last_name_regex.match(post_data['last_name']):
-            errors['last_name_invalid'] = "First name must begin with a capital and consist only of letters."
+            errors['last_name_invalid'] = "Last name must consist only of letters."
         if len(post_data['last_name']) < 2:
             errors['last_name_short'] = "Last name must be at leased 2 characters long."
 
@@ -31,12 +32,29 @@ class UserManager(models.Manager):
             errors['email_unique'] = "That email is already in use."
         except:
             pass
+
+        if len(post_data['birthday']) != 10:
+            errors['invalid_date'] = "Invalid birth date"
+        else:
+            birthday_dtm = datetime.datetime.strptime(post_data['birthday'], "%Y-%m-%d")
+
+            if birthday_dtm > datetime.datetime.today():
+                errors['birthday_invalid'] = "The release date is not in the past."
+
+        def calc_age(born):
+            today = datetime.datetime.today()
+            return today.year - born.year - ((today.month, today.day) < (born.month, born.day))
+
+        user_age = calc_age(birthday_dtm)
+        if user_age < 13:
+            errors['age_restriction_not_met'] = "You must be at leased 13 years of age to register."
         
         return errors
 
 class User(models.Model):
     first_name = models.CharField(max_length=254)
     last_name = models.CharField(max_length=254)
+    birthday = models.DateField()
     email_address = models.CharField(max_length=320)
     password = models.CharField(max_length=60)
     created_at = models.DateTimeField(auto_now_add=True)

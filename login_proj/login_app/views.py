@@ -20,6 +20,7 @@ def register(request):
     User.objects.create(
         first_name = request.POST['first_name'],
         last_name = request.POST['last_name'],
+        birthday = request.POST['birthday'],
         email_address = request.POST['email_address'],
         password = pw_hash
     )

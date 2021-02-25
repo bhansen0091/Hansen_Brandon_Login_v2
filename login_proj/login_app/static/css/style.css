@@ -44,9 +44,14 @@
 }
 
 .form_divisions{
+    height: 22px;
     margin-bottom: 5px;
     display: flex;
     justify-content: space-between;
+}
+
+.birthday_input_field{
+    width: 173px;
 }
 
 .login_email{
