@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login & Registration</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+
+<body>
+    <div class="wrapper">
+        <header class="page_header">
+            <h1>Register or Login</h1>
+            {% for message in messages %}
+                <p>{{message}}</p>
+            {% endfor %}
+        </header>
+        <main class="main_content">
+            <div class="registration_container main_content_split">
+                <h3>Register</h3>
+                <form action="/users/register" class="new_user_form input_forms" method="POST">
+                    {% csrf_token %}
+                    <div class="first_name_input form_divisions">
+                        <label for="first_name">First Name:</label>
+                        <input type="text" name="first_name"
+                            class="first_name_input">
+                    </div>
+                    <div class="last_name_input form_divisions">
+                        <label for="last_name">Last Name:</label>
+                        <input type="text" name="last_name"
+                            class="last_name_input">
+                    </div>
+                    <div class="email_input form_divisions">
+                        <label for="email_address">Email:</label>
+                        <input type="email" name="email_address">
+                    </div>
+                    <div class="password_input form_divisions">
+                        <label for="password">Password:</label>
+                        <input type="password" name="password"
+                            class="password_input">
+                    </div>
+                    <div class="confirm_password_input form_divisions">
+                        <label for="confirm_password">Confirm Password:</label>
+                        <input type="password" name="confirm_password"
+                            class="confirm_password_input">
+                    </div>
+                    <div class="button_container form_divisions">
+                        <button type="submit">Register</button>
+                    </div>
+                </form>
+            </div>
+            <div class="login_container main_content_split">
+                <h3>Login</h3>
+                <form action="/users/login" class="login_user_form input_forms" method="POST">
+                    {% csrf_token %}
+                    <div class="login_email form_divisions">
+                        <label for="email_address">Email:</label>
+                        <input type="email" name="email_address">
+                    </div>
+                    <div class="login_pass form_divisions">
+                        <label for="password">Password:</label>
+                        <input type="password" name="password"
+                            class="password_input">
+                    </div>
+                    <div class="button_container form_divisions">
+                        <button type="submit">Login</button>
+                    </div>
+                </form>
+            </div>
+            <div class="error_container">
+
+
+
+            </div>
+        </main>
+    </div>
+</body>
+
+</html>

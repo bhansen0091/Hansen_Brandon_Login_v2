@@ -1,0 +1,63 @@
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    vertical-align: top;
+    /* outline: 1px dotted red; */
+}
+
+.wrapper{
+    width: 1000px;
+    padding: 15px;
+    display: flex;
+    flex-direction: column;
+}
+
+.page_header{
+    width: 100%;
+    margin: 15px 0px;
+    text-align: center;
+}
+
+.main_content{
+    width: 100%;
+    display: flex;
+}
+
+.main_content_split{
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border: 1px solid black
+}
+
+.main_content_split h3{
+    margin: 15px 0px;
+}
+
+.input_forms{
+    width: 70%;
+    padding: 5px;
+    display: flex;
+    flex-direction: column;;
+}
+
+.form_divisions{
+    margin-bottom: 5px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.login_email{
+    padding-left: 80px;
+}
+
+.login_pass{
+    padding-left: 80px;
+}
+
+.button_container{
+    margin-top: 10px;
+    align-self: center;
+}
